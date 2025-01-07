@@ -1,8 +1,5 @@
-@extends('layout')
-@section('title')
-    Jobs list
-@endsection
-@section('content')
+<x-layout>
+    <x-slot name="title">List Jobs</x-slot>
     @forelse ($jobs as $job)
         <li>
             <a href="{{ route('jobs.show', $loop->iteration) }}">{{ $loop->iteration }} - {{ $job }}</a>
@@ -10,4 +7,4 @@
     @empty
         <li>No jobs...</li>
     @endforelse
-@endsection
+</x-layout>
