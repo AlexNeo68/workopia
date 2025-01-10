@@ -26,7 +26,6 @@
     <main class="container mx-auto p-4 mt-4">
         {{ $slot }}
     </main>
-    <x-bottom-banner />
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
