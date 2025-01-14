@@ -58,13 +58,13 @@
             <x-inputs.text-area id="company_description" name="company_description" label="Company Description"
                 placeholder="Company Description" />
 
-            <x-inputs.text name="company_website" label="Company Website" placeholder="Enter website" />
+            <x-inputs.text name="company_website" type="url" label="Company Website" placeholder="Enter website" />
 
             <x-inputs.text name="contact_phone" label="Contact Phone" placeholder="Enter Phone" />
 
             <x-inputs.text name="contact_email" label="Contact Email" placeholder="Enter Email" />
 
-            <x-inputs.file name="contact_logo" id="contact_logo" label="Company Logo" />
+            <x-inputs.file name="company_logo" id="company_logo" label="Company Logo" />
 
             <button type="submit"
                 class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none">

@@ -15,12 +15,13 @@
             <x-button-link :url="route('jobs.create')" icon="edit">Create Job</x-button-link>
         </nav>
 
-        <button id="hamburger" class="text-white md:hidden flex items-center">
+        <button id="hamburger" @click="open = !open" class="text-white md:hidden flex items-center">
             <i class="fa fa-bars text-2xl"></i>
         </button>
     </div>
     <!-- Mobile Menu -->
-    <nav id="mobile-menu" class="hidden md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2">
+    <nav x-show="open" @click.away="open = false" id="mobile-menu"
+        class="hidden md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2">
         <x-nav-link :mobile="true" :url="route('jobs.index')" :isActive="request()->is('jobs')">All Jobs</x-nav-link>
         <x-nav-link :mobile="true" :url="route('jobs.saved')" :isActive="request()->is('/jobs/saved')">Saved Jobs</x-nav-link>
 

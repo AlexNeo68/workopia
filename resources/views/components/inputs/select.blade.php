@@ -8,7 +8,7 @@
         class="w-full px-4 py-2 border rounded focus:outline-none @error('job_type') border-red-500 @enderror">
 
         @foreach ($options as $optionValue => $optionLabel)
-            <option :value="$optionValue" @if (old($name, $value) == $optionValue) selected @endif>
+            <option value="{{ $optionValue }}" @if (old($name, $value) == $optionValue) selected @endif>
                 {{ $optionLabel }}
             </option>
         @endforeach
