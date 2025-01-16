@@ -1,7 +1,4 @@
 <x-layout>
-    <h1>Login</h1>
-</x-layout>
-<x-layout>
     <div class="bg-white shadow-md p-8 rounded w-full">
         <h2 class="text-2xl text-center mb-4">Login</h2>
         <form :action="route('login.authenticate')" method="POST" class="w-1/2 mx-auto">

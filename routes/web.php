@@ -13,12 +13,18 @@ Route::get('/jobs/saved', function () {
 })->name('jobs.saved');
 
 
-Route::resource('jobs', JobController::class);
+Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'update', 'edit', 'delete']);
+Route::resource('jobs', JobController::class)->except(['create', 'update', 'edit', 'delete']);
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisterController::class, 'form'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+    Route::get('/login', [LoginController::class, 'form'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+});
 
 // auth controllers
-Route::get('/register', [RegisterController::class, 'form'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-Route::get('/login', [LoginController::class, 'form'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
-Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::delete('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
