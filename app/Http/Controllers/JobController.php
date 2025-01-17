@@ -22,7 +22,7 @@ class JobController extends Controller
     {
 
         $title = 'Available jobs';
-        $jobs = Job::all();
+        $jobs = Job::paginate(3);
         return view('jobs.index', compact('title', 'jobs'));
     }
 
@@ -134,6 +134,12 @@ class JobController extends Controller
         }
         $job->delete();
 
-        return redirect()->route('jobs.index')->with('success', 'JobListing deleted successfully!');
+        $route = 'jobs.index';
+
+        if (request()->query('from') == 'dashboard') {
+            $route = 'dashboard.index';
+        }
+
+        return redirect()->route($route)->with('success', 'JobListing deleted successfully!');
     }
 }

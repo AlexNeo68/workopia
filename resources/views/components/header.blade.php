@@ -13,12 +13,18 @@
                 <x-nav-link :url="url('/register')" :isActive="request()->is('register')">Register</x-nav-link>
             @endguest
 
-
-
             @auth
                 <x-nav-link :url="route('jobs.saved')" :isActive="request()->is('/jobs/saved')">Saved Jobs</x-nav-link>
 
-                <x-nav-link :url="url('/dashboard')" :isActive="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
+                <x-nav-link :url="url('/dashboard')" :isActive="request()->is('dashboard')">
+                    @if (Auth::user()->avatar)
+                        <img class="w-12 h-12 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->avatar) }}"
+                            alt="">
+                    @else
+                        <img class="w-12 h-12 rounded-full" src="{{ asset('storage/avatars/default-avatar.png') }}"
+                            alt="">
+                    @endif
+                </x-nav-link>
 
                 <x-logout-button />
 

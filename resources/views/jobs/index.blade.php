@@ -8,4 +8,5 @@
             <p>No jobs...</p>
         @endforelse
     </div>
+    {{ $jobs->links('pagination::workopia') }}
 </x-layout>
