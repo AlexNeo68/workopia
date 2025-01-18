@@ -22,7 +22,7 @@ class JobController extends Controller
     {
 
         $title = 'Available jobs';
-        $jobs = Job::paginate(3);
+        $jobs = Job::latest()->paginate(9);
         return view('jobs.index', compact('title', 'jobs'));
     }
 

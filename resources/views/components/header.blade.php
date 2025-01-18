@@ -14,7 +14,7 @@
             @endguest
 
             @auth
-                <x-nav-link :url="route('jobs.saved')" :isActive="request()->is('/jobs/saved')">Saved Jobs</x-nav-link>
+                <x-nav-link :url="route('jobs.bookmarked')" :isActive="request()->is('/jobs/saved')">Saved Jobs</x-nav-link>
 
                 <x-nav-link :url="url('/dashboard')" :isActive="request()->is('dashboard')">
                     @if (Auth::user()->avatar)

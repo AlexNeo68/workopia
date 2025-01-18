@@ -105,11 +105,37 @@
                 <a href="{{ $job->company_website }}" target="_blank" class="text-blue-500">Visit Website</a>
             @endif
 
+            @guest
+                <p
+                    class="bg-gray-200 rounded-lg flex items-baseline gap-4 py-2 px-4 text-sm text-blue-900 mt-6 text-center">
+                    <i class="fas fa-info-circle"></i>
+                    You must logged in for
+                    bookmark
+                </p>
+            @else
+                @if (Auth::user()->isBookmarkedJob($job))
+                    <form action="{{ route('jobs.bookmarked.destroy', $job) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="mt-10 bg-red-500 hover:bg-red-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"><i
+                                class="fas fa-bookmark mr-3"></i> Remove bookmark</button>
+                    </form>
+                @else
+                    <form action="{{ route('jobs.bookmarked.store', $job) }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="mt-10 bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"><i
+                                class="fas fa-bookmark mr-3"></i> Bookmark
+                            Listing</button>
+                    </form>
+                @endif
 
-            <a href=""
-                class="mt-10 bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"><i
-                    class="fas fa-bookmark mr-3"></i> Bookmark
-                Listing</a>
+
+            @endguest
+
+
+
         </aside>
     </div>
 </x-layout>

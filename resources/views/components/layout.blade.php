@@ -29,8 +29,11 @@
         @if (session('success'))
             <x-alert type="success" :message="session('success')" timeout="5000"></x-alert>
         @endif
+        @if (session('status'))
+            <x-alert type="status" bg="bg-blue-400" :message="session('status')" timeout="5000"></x-alert>
+        @endif
         @if (session('error'))
-            <x-alert type="error" :message="session('error')"></x-alert>
+            <x-alert type="error" bg="bg-red-400" :message="session('error')"></x-alert>
         @endif
         {{ $slot }}
     </main>
