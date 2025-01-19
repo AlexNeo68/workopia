@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AplicantController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookmarkController;
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('jobs.bookmarked');
     Route::post('/bookmarks/{job}', [BookmarkController::class, 'store'])->name('jobs.bookmarked.store');
     Route::delete('/bookmarks/{job}', [BookmarkController::class, 'destroy'])->name('jobs.bookmarked.destroy');
+
+    Route::post('/jobs/{job}/apply', [AplicantController::class, 'store'])->name('jobs.apply');
+    Route::delete('/aplicants/{aplicant}', [AplicantController::class, 'destroy'])->name('aplicant.destroy');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

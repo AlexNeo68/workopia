@@ -71,18 +71,80 @@
                         {{ $job->benefits }}
                     </p>
                 </div>
-                <p class="my-5">
-                    Put "Job Application" as the subject of your email
-                    and attach your resume.
-                </p>
-                <a href="mailto:manager@company.com"
-                    class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium cursor-pointer text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
-                    Apply Now
-                </a>
+
+                @auth
+                    <p class="my-5">
+                        Put "Job Application" as the subject of your email
+                        and attach your resume.
+                    </p>
+
+                    <div x-data="{ open: false }" @keydown.escape="open = false">
+
+                        <button
+                            class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium cursor-pointer text-indigo-700 bg-indigo-100 hover:bg-indigo-200"
+                            x-on:click="open = !open">
+                            Apply Now
+                        </button>
+
+                        <div class="fixed z-10 inset-0 bg-gray-900 flex justify-center items-center bg-opacity-50" x-cloak
+                            x-show="open" x-transition>
+                            <div @click.away="open = false" class="bg-white p-8 w-full max-w-md shadow-md rounded-lg">
+                                <h3 class="font-semibold text-lg mb-4">Apply for {{ $job->title }}</h3>
+                                <form method="POST" action="{{ route('jobs.apply', $job) }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+
+                                    <x-inputs.text type="hidden" name="job_id" value="{{ $job->id }}" />
+                                    <x-inputs.text name="full_name" label="Full Name" id="full_name" :required="true" />
+                                    <x-inputs.text type="tel" :required="true" name="contact_phone"
+                                        label="Contact Phone" id="contact_phone" />
+                                    <x-inputs.text name="contact_email" label="Contact Email" id="contact_email" />
+                                    <x-inputs.text name="location" label="Full Name" id="location" />
+                                    <x-inputs.textarea name="message" label="Message" id="message" />
+                                    <x-inputs.file :required="true" name="resume" id="resume"
+                                        label="Attach your resume" />
+
+                                    <x-button type="submit">Apply</x-button>
+                                    <x-button type="cancel" @click="open=false"
+                                        class="bg-gray-600 hover:bg-gray-700">Cancel</x-button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                @else
+                    <p
+                        class="bg-gray-200 rounded-lg flex items-baseline gap-4 py-2 px-4 text-sm text-blue-900 mt-6 text-center">
+                        <i class="fas fa-info-circle"></i>
+                        You must logged in for
+                        applying jobs
+                    </p>
+                @endauth
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-                <div id="map"></div>
+                <div id="map" style="width: 100%; height: 400px;"></div>
+                <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=34f426cd-8cba-4aba-a899-81f478fa2eb5"
+                    type="text/javascript"></script>
+                <script>
+                    ymaps.ready(init);
+
+                    function init() {
+                        var myMap = new ymaps.Map("map", {
+                            center: [55.76, 37.64], // координаты центра карты (Москва)
+                            zoom: 10 // масштаб карты
+                        });
+
+                        // Добавление метки
+                        var myPlacemark = new ymaps.Placemark([55.76, 37.64], {
+                            balloonContent: 'Москва'
+                        });
+
+                        myMap.geoObjects.add(myPlacemark);
+                    }
+                </script>
             </div>
         </section>
 

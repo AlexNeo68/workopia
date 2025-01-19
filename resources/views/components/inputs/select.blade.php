@@ -1,10 +1,10 @@
-@props(['id', 'name', 'label' => null, 'value' => '', 'options' => []])
+@props(['id', 'name', 'label' => null, 'value' => '', 'options' => [], 'required' => false])
 
 <div class="mb-4">
     @if ($label)
         <label class="block text-gray-700" for="{{ $id }}">{{ $label }}</label>
     @endif
-    <select id="{{ $id }}" name="{{ $name }}"
+    <select {{ $required ? 'required' : '' }} id="{{ $id }}" name="{{ $name }}"
         class="w-full px-4 py-2 border rounded focus:outline-none @error('job_type') border-red-500 @enderror">
 
         @foreach ($options as $optionValue => $optionLabel)

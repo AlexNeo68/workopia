@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->bookmarks()->where('job_id', $job->id)->exists();
     }
+
+    public function aplicants(): HasMany
+    {
+        return $this->hasMany(Aplicant::class);
+    }
 }

@@ -10,7 +10,10 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.8/cdn.min.js"
+        integrity="sha512-S0FmGVNvhIGBTFW8xl2Sb9VjaTqStfWO1KHQjaxvTESAOe0RlL7jITJQVmA5V1bu88Y9VgDoW7jqsQCYVRLx1Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <title>
         {{ $title ?? 'Workopia forever' }}
     </title>
