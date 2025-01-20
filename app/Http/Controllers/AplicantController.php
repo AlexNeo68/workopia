@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobAplied;
 use App\Models\Aplicant;
 use App\Models\Job;
 use Illuminate\Console\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class AplicantController extends Controller
@@ -35,6 +37,8 @@ class AplicantController extends Controller
         $applicant->job_id = $job->id;
         $applicant->user_id = auth()->user()->id;
         $applicant->save();
+
+        Mail::to($job->user->email)->send(new JobAplied());
 
         return back()->with('success', 'Your application has been saved!');
     }
