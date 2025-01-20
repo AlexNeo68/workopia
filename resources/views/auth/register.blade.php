@@ -5,6 +5,7 @@
             @csrf
             <x-inputs.text name="name" placeholder="Enter your name"></x-inputs.text>
             <x-inputs.text name="email" type="email" placeholder="Email address"></x-inputs.text>
+            <x-inputs.text name="city" placeholder="City"></x-inputs.text>
             <x-inputs.text name="password" type="password" placeholder="Password"></x-inputs.text>
             <x-inputs.text name="password_confirmation" type="password" placeholder="Confirm Password"></x-inputs.text>
 

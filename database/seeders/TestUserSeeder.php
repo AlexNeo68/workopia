@@ -19,7 +19,8 @@ class TestUserSeeder extends Seeder
             'name' => 'AlexNeo68',
             'email' => 'test@test.com',
             'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('111111')
+            'password' => Hash::make('111111'),
+            'city' => 'Тамбов',
         ]);
 
         return $user;

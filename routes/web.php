@@ -19,6 +19,7 @@ Route::get('/jobs/saved', function () {
 
 Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'update', 'edit', 'delete']);
 Route::resource('jobs', JobController::class)->except(['create', 'update', 'edit', 'delete']);
+Route::get('jobs-search', [JobController::class, 'search'])->name('jobs.search');
 
 
 Route::middleware('guest')->group(function () {

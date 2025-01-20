@@ -102,7 +102,8 @@ class JobController extends Controller
             'benefits' => 'nullable|string',
             'address' => 'nullable|string',
             'city' => 'required|string',
-            'state' => 'required|string',
+            'coordinates' => 'required|string',
+            'state' => 'nullable|string',
             'zipcode' => 'nullable|string',
             'contact_email' => 'required|string',
             'contact_phone' => 'nullable|string',
@@ -141,5 +142,33 @@ class JobController extends Controller
         }
 
         return redirect()->route($route)->with('success', 'JobListing deleted successfully!');
+    }
+
+    public function search(Request $request): View
+    {
+        $jobs = Job::query();
+
+        $keywords = strtolower($request->input('keywords'));
+        $location = strtolower($request->input('location'));
+
+        if ($keywords) {
+            $jobs = $jobs->where(function ($q) use ($keywords) {
+                $q->whereRaw('LOWER(title) like ?', ['%' . $keywords . '%'])
+                    ->orWhereRaw('LOWER(description) like ?', ['%' . $keywords . '%'])
+                    ->orWhereRaw('LOWER(tags) like ?', ['%' . $keywords . '%']);
+            });
+        }
+
+        if ($location) {
+            $jobs = $jobs->where(function ($q) use ($location) {
+                $q->whereRaw('LOWER(address) like ?', ['%' . $location . '%'])
+                    ->orWhereRaw('LOWER(city) like ?', ['%' . $location . '%'])
+                    ->orWhereRaw('LOWER(state) like ?', ['%' . $location . '%'])
+                    ->orWhereRaw('LOWER(zipcode) like ?', ['%' . $location . '%']);
+            });
+        }
+        $jobs = $jobs->paginate(12);
+
+        return view('jobs.index', compact('jobs'));
     }
 }

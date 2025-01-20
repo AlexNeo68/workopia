@@ -24,6 +24,7 @@ class Job extends Model
         'requirements',
         'benefits',
         'address',
+        'coordinates',
         'city',
         'state',
         'zipcode',

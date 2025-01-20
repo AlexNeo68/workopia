@@ -15,6 +15,7 @@
                 @csrf
                 @method('PUT')
                 <x-inputs.text name="name" label="Name" value="{{ $user->name }}"></x-inputs.text>
+                <x-inputs.text name="city" label="City" value="{{ $user->city }}"></x-inputs.text>
                 <x-inputs.text name="email" type="email" label="Email" value="{{ $user->email }}"></x-inputs.text>
 
                 <x-inputs.file name="avatar" label="Upload avatar" id="avatar" />

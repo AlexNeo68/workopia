@@ -124,28 +124,32 @@
                 @endauth
             </div>
 
-            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-                <div id="map" style="width: 100%; height: 400px;"></div>
-                <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=34f426cd-8cba-4aba-a899-81f478fa2eb5"
-                    type="text/javascript"></script>
-                <script>
-                    ymaps.ready(init);
+            @if ($job->coordinates)
+                <div class="bg-white p-6 rounded-lg shadow-md mt-6">
 
-                    function init() {
-                        var myMap = new ymaps.Map("map", {
-                            center: [55.76, 37.64], // координаты центра карты (Москва)
-                            zoom: 10 // масштаб карты
-                        });
+                    <div id="map" style="width: 100%; height: 400px;"></div>
 
-                        // Добавление метки
-                        var myPlacemark = new ymaps.Placemark([55.76, 37.64], {
-                            balloonContent: 'Москва'
-                        });
+                    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey={{ env('YANDEX_MAP_API_KEY') }}" type="text/javascript">
+                    </script>
+                    <script>
+                        ymaps.ready(init);
 
-                        myMap.geoObjects.add(myPlacemark);
-                    }
-                </script>
-            </div>
+                        function init() {
+                            var myMap = new ymaps.Map("map", {
+                                center: [{{ $job->coordinates }}], // координаты центра карты
+                                zoom: 10 // масштаб карты
+                            });
+
+                            // Добавление метки
+                            var myPlacemark = new ymaps.Placemark([{{ $job->coordinates }}], {
+                                balloonContent: '{{ $job->address }}'
+                            });
+
+                            myMap.geoObjects.add(myPlacemark);
+                        }
+                    </script>
+                </div>
+            @endif
         </section>
 
         <!-- Sidebar -->

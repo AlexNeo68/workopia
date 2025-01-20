@@ -28,6 +28,7 @@ class JobFactory extends Factory
             'requirements' => $this->faker->sentences(3, true),
             'benefits' => $this->faker->sentences(2, true),
             'address' => $this->faker->streetAddress(),
+            'coordinates' => '52.721295,41.452750',
             'city' => $this->faker->city(),
             'state' => $this->faker->state(),
             'zipcode' => $this->faker->postcode(),
