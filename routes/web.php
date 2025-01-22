@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -20,6 +21,10 @@ Route::get('/jobs/saved', function () {
 Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'update', 'edit', 'delete']);
 Route::resource('jobs', JobController::class)->except(['create', 'update', 'edit', 'delete']);
 Route::get('jobs-search', [JobController::class, 'search'])->name('jobs.search');
+
+Route::resource('studios', StudioController::class)->middleware('auth')->only(['create', 'update', 'edit', 'delete']);
+Route::resource('studios', StudioController::class)->except(['create', 'update', 'edit', 'delete']);
+Route::get('studios-search', [StudioController::class, 'search'])->name('studios.search');
 
 
 Route::middleware('guest')->group(function () {

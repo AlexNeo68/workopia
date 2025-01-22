@@ -15,7 +15,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <title>
-        {{ $title ?? 'Workopia forever' }}
+        {{ $title ?? 'ПравИло ВСЕМ' }}
     </title>
 </head>
 

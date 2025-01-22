@@ -1,18 +1,18 @@
 <x-layout>
     <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">
-        Recent Jobs
+        Новые студии
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        @forelse ($jobs as $job)
-            <x-job-card :job="$job"></x-job-card>
+        @forelse ($studios as $studio)
+            <x-studio-card :studio="$studio"></x-studio-card>
 
         @empty
-            <p>No jobs...</p>
+            <p>Нет студий...</p>
         @endforelse
     </div>
-    <a href="{{ route('jobs.index') }}" class="block text-xl text-center">
-        <i class="fa fa-arrow-alt-circle-right"></i> Show All Jobs
+    <a href="{{ route('studios.index') }}" class="block text-md text-center">
+        <i class="fa fa-arrow-alt-circle-right"></i> Показать все студии
     </a>
 
     <x-bottom-banner />

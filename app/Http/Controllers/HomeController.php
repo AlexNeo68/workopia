@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+use App\Models\Studio;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index(): View
     {
 
-        $jobs = Job::latest()->limit(6)->get();
-        return view('pages.home', compact('jobs'));
+        $studios = Studio::latest()->limit(6)->get();
+        return view('pages.home', compact('studios'));
     }
 }

@@ -1,7 +1,6 @@
 @props([
-    'heading' => 'Looking to hire?',
-    'subheading' => 'Post your job listing now and find the perfect
-                candidate.',
+    'heading' => 'Открыли или планируете открытие студии ПравИло?',
+    'subheading' => 'Разместите информацию о себе на нашем сайте и людям будем удобнее вас найти.',
 ])
 <section class="container mx-auto my-6">
     <div class="bg-blue-800 text-white rounded p-4 flex items-center justify-between flex-col md:flex-row gap-4">
@@ -11,6 +10,6 @@
                 {{ $subheading }}
             </p>
         </div>
-        <x-button-link :url="route('jobs.create')" icon="edit">Create Job</x-button-link>
+        <x-button-link :url="route('jobs.create')" icon="edit">Создать студию</x-button-link>
     </div>
 </section>

@@ -1,5 +1,5 @@
 @props([
-    'heading' => 'Find Your Dream Job',
+    'heading' => 'Найти студию ПравИло',
 ])
 
 <section class="hero relative bg-cover bg-center bg-no-repeat h-80 flex items-center">
